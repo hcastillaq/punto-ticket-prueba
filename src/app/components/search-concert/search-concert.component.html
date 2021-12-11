@@ -8,7 +8,7 @@
     <input matInput placeholder="Search by artist" [formControl]="control" />
     <mat-icon
       matSuffix
-      *ngIf="isSearch && !loading"
+      *ngIf="validateControlValue()"
       (click)="clearControl()"
       class="pointer">
       clear
