@@ -31,6 +31,7 @@ import { MatTableModule } from "@angular/material/table";
 import { MatSortModule } from "@angular/material/sort";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatNativeDateModule } from "@angular/material/core";
+import { MatButtonModule } from "@angular/material/button";
 
 @NgModule({
   declarations: [],
@@ -55,6 +56,7 @@ import { MatNativeDateModule } from "@angular/material/core";
     MatTabsModule,
     MatExpansionModule,
     MatButtonToggleModule,
+    MatButtonModule,
     MatChipsModule,
     MatIconModule,
     MatProgressSpinnerModule,
@@ -88,6 +90,7 @@ import { MatNativeDateModule } from "@angular/material/core";
     MatTabsModule,
     MatExpansionModule,
     MatButtonToggleModule,
+    MatButtonModule,
     MatChipsModule,
     MatIconModule,
     MatProgressSpinnerModule,

@@ -8,10 +8,19 @@ import { ConcertInMemoryRepository } from "./core/repositories/concert/concertIn
 import { MaterialModule } from "./modules/material/material.module";
 import { TableConcertsComponent } from "./components/table-concerts/table-concerts.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { SearchConcertComponent } from "./components/search-concert/search-concert.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
-  declarations: [AppComponent, TableConcertsComponent],
-  imports: [BrowserModule, AppRoutingModule, MaterialModule, FlexLayoutModule],
+  declarations: [AppComponent, TableConcertsComponent, SearchConcertComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MaterialModule,
+    FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   providers: [
     { provide: ConcertRepository, useClass: ConcertInMemoryRepository },
   ],

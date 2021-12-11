@@ -11,4 +11,8 @@ export class ConcertService {
   getAll(): Promise<Concert[]> {
     return this.repository.all();
   }
+
+  getByArtist(artist: string): Promise<Concert[]> {
+    return this.repository.searchByArtist(artist);
+  }
 }

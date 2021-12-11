@@ -41,8 +41,8 @@ export class ConcertInMemoryRepository extends ConcertRepository {
 
   searchByArtist(artist: string): Promise<Concert[]> {
     return new Promise((resolve) => {
-      const foundConcerts = this.concerts.filter(
-        (concert) => concert.artist.toLowerCase() === artist.toLowerCase()
+      const foundConcerts = this.concerts.filter((concert) =>
+        concert.artist.toLowerCase().includes(artist.toLowerCase())
       );
       resolve(foundConcerts);
     });
