@@ -1,20 +1,18 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { MaterialModule } from './modules/material/material.module';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { ConcertRepository } from "./core/repositories/concert/concert.repository";
+import { ConcertInMemoryRepository } from "./core/repositories/concert/concertInMemory.repository";
+import { MaterialModule } from "./modules/material/material.module";
 
 @NgModule({
-  declarations: [
-    AppComponent
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, MaterialModule],
+  providers: [
+    { provide: ConcertRepository, useFactory: ConcertInMemoryRepository },
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MaterialModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
