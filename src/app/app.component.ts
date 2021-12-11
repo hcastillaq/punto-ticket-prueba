@@ -16,23 +16,39 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.getConcerts();
   }
-
-  getConcerts() {
+  /**
+   * get concerts from service
+   * @returns void
+   */
+  getConcerts(): void {
     this.concertService.getAll().then((concerts) => {
       this.setConcerts(concerts);
       this.setOldConcerts(concerts);
     });
   }
 
-  restartConcerts() {
+  /**
+   * set concerts from service in concerts
+   * @returns void
+   */
+  restartConcerts(): void {
     this.concerts = this.oldConcerts;
   }
-
-  setOldConcerts(concerts: Concert[]) {
+  /**
+   * set concerts in oldConcerts
+   * @param  {Concert[]} concerts
+   * @returns void
+   */
+  setOldConcerts(concerts: Concert[]): void {
     this.oldConcerts = concerts;
   }
 
-  setConcerts(concerts: Concert[]) {
+  /**
+   * set data in concerts
+   * @param  {Concert[]} concerts
+   * @returns void
+   */
+  setConcerts(concerts: Concert[]): void {
     this.concerts = concerts;
   }
 }

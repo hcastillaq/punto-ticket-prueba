@@ -7,11 +7,18 @@ import { ConcertRepository } from "../../repositories/concert/concert.repository
 })
 export class ConcertService {
   constructor(private repository: ConcertRepository) {}
-
+  /**
+   * get all concerts
+   * @returns Promise
+   */
   getAll(): Promise<Concert[]> {
     return this.repository.all();
   }
-
+  /**
+   * get concerts filtered by artist
+   * @param  {string} artist
+   * @returns Promise
+   */
   getByArtist(artist: string): Promise<Concert[]> {
     return this.repository.searchByArtist(artist);
   }
