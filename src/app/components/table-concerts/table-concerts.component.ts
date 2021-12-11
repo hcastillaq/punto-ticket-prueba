@@ -10,9 +10,7 @@ import { Concert } from "src/app/core/interfaces/concert.interface";
 })
 export class TableConcertsComponent implements OnInit {
   @Input() concerts: Concert[] = [];
-  dataSource: MatTableDataSource<Concert> = new MatTableDataSource(
-    this.concerts
-  );
+
   displayedColumns = ["title", "artist", "date", "hour"];
   constructor() {}
 

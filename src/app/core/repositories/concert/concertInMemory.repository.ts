@@ -8,6 +8,7 @@ import { ConcertRepository } from "./concert.repository";
 export class ConcertInMemoryRepository extends ConcertRepository {
   private concerts: Concert[] = [
     {
+      id: "1",
       title: "concert 1",
       artist: "Artist 1",
       date: "2021/12/20",
@@ -16,6 +17,7 @@ export class ConcertInMemoryRepository extends ConcertRepository {
       hour: "7:00 PM",
     },
     {
+      id: "2",
       title: "concert 2",
       artist: "Artist 2",
       date: "2021/12/20",
@@ -24,6 +26,7 @@ export class ConcertInMemoryRepository extends ConcertRepository {
       hour: "7:00 PM",
     },
     {
+      id: "3",
       title: "concert 3",
       artist: "Artist 3",
       date: "2021/12/20",
