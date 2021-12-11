@@ -1,0 +1,6 @@
+<div class="container">
+  <app-search-concert
+    (concerts)="setConcerts($event)"
+    (reset)="restartConcerts()"></app-search-concert>
+  <app-table-concerts [concerts]="concerts"></app-table-concerts>
+</div>

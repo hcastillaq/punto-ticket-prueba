@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+@use "./scss/theme/colors.scss" as colors;
+@use "./scss/theme/typography.scss" as typography;
+@use "./scss//theme//utils.scss";
+@use "./scss/theme/layout.scss";
+
+:root {
+  --background: #{colors.$background};
+  --font-size: #{typography.$font-size};
+}
+
+html,
+body {
+  font-size: var(--font-size) !important;
+  background-color: var(--background);
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
