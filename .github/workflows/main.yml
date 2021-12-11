@@ -1,0 +1,28 @@
+name: ci cd
+
+on:
+  push:
+    branches:
+      - dev
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ci-cd:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+            node-version: 16
+      - name: install
+        run: npm install
+      - name: build
+        run: npm run build
+      - name: deploy
+        if: ${{ github.ref == 'refs/heads/main' }}
+        run: |
+          npm install -g firebase-tools
+          firebase deploy --token ${{ secrets.TOKEN }}
