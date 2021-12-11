@@ -12,12 +12,18 @@ export class AppComponent implements OnInit {
   concerts: Concert[] = [];
 
   constructor(private concertService: ConcertService) {}
+
   ngOnInit(): void {
     this.getConcerts();
   }
+
   getConcerts() {
     this.concertService.getAll().then((concerts) => {
-      this.concerts = concerts;
+      this.setConcerts(concerts);
     });
+  }
+
+  setConcerts(concerts: Concert[]) {
+    this.concerts = concerts;
   }
 }

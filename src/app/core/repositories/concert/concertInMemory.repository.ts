@@ -38,4 +38,13 @@ export class ConcertInMemoryRepository extends ConcertRepository {
       resolve(this.concerts);
     });
   }
+
+  searchByArtist(artist: string): Promise<Concert[]> {
+    return new Promise((resolve) => {
+      const foundConcerts = this.concerts.filter(
+        (concert) => concert.artist.toLowerCase() === artist.toLowerCase()
+      );
+      resolve(foundConcerts);
+    });
+  }
 }

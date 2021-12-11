@@ -6,4 +6,5 @@ import { Concert } from "../../interfaces/concert.interface";
 })
 export abstract class ConcertRepository {
   abstract all(): Promise<Concert[]>;
+  abstract searchByArtist(artist: string): Promise<Concert[]>;
 }
