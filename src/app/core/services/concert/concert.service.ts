@@ -22,4 +22,22 @@ export class ConcertService {
   getByArtist(artist: string): Promise<Concert[]> {
     return this.repository.searchByArtist(artist);
   }
+
+  /**
+   * update concert
+   * @param  {Concert} concert
+   * @returns void
+   */
+  update(concert: Concert): void {
+    this.repository.update(concert);
+  }
+
+  /**
+   * delete concert
+   * @param  {string} concert
+   * @returns void
+   */
+  delete(id: string): void {
+    this.repository.delete(id);
+  }
 }

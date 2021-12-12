@@ -10,10 +10,15 @@ import { TableConcertsComponent } from "./components/table-concerts/table-concer
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { SearchConcertComponent } from "./components/search-concert/search-concert.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { ConcertFormComponent } from './components/concert-form/concert-form.component';
+import { ConcertFormComponent } from "./components/concert-form/concert-form.component";
 
 @NgModule({
-  declarations: [AppComponent, TableConcertsComponent, SearchConcertComponent, ConcertFormComponent],
+  declarations: [
+    AppComponent,
+    TableConcertsComponent,
+    SearchConcertComponent,
+    ConcertFormComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -26,5 +31,6 @@ import { ConcertFormComponent } from './components/concert-form/concert-form.com
     { provide: ConcertRepository, useClass: ConcertInMemoryRepository },
   ],
   bootstrap: [AppComponent],
+  entryComponents: [ConcertFormComponent],
 })
 export class AppModule {}
