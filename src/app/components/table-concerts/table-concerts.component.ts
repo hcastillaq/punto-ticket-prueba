@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { Concert } from "src/app/core/interfaces/concert.interface";
+import { ConcertCollectionService } from "src/app/ngrx/collections/concert.collection";
 
 @Component({
   selector: "app-table-concerts",
@@ -8,13 +9,16 @@ import { Concert } from "src/app/core/interfaces/concert.interface";
   inputs: ["concerts"],
 })
 export class TableConcertsComponent implements OnInit {
-  @Input() concerts: Concert[] = [];
+  concerts: Concert[] = [];
   @Output() select: EventEmitter<Concert> = new EventEmitter<Concert>();
 
   displayedColumns = ["title", "artist", "date"];
-  constructor() {}
+  constructor(private concertsCollection: ConcertCollectionService) {}
 
   ngOnInit(): void {
+    this.concertsCollection.entities$.subscribe(
+      (concerts) => (this.concerts = concerts)
+    );
     this.validateInputConcerts();
   }
 

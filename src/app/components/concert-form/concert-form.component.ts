@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { Concert } from "src/app/core/interfaces/concert.interface";
 import { ConcertService } from "src/app/core/services/concert/concert.service";
+import { ConcertCollectionService } from "src/app/ngrx/collections/concert.collection";
 
 export type ConcertFormAction = "show" | "edit" | "create" | "delete";
 export type ConcertFormResponse = {
@@ -18,11 +19,11 @@ export type ConcertFormResponse = {
 export class ConcertFormComponent implements OnInit {
   action: ConcertFormAction = "show";
   readonly = false;
-  loading = false;
+  loading = this.service.loading$;
   form: FormGroup = this.buildForm();
 
   constructor(
-    private service: ConcertService,
+    private service: ConcertCollectionService,
     private formBuilder: FormBuilder,
     private ref: MatDialogRef<ConcertFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Concert
@@ -86,24 +87,9 @@ export class ConcertFormComponent implements OnInit {
    * @returns void
    */
   edit(): void {
-    this.loading = true;
-    this.service.update({ ...this.data, ...this.form.value });
-    setTimeout(() => {
-      this.loading = false;
+    this.service.update({ ...this.data, ...this.form.value }).subscribe(() => {
       this.close();
-    }, 1000);
-  }
-
-  /**
-   * close modal and emit data
-   * @returns void
-   */
-  close(): void {
-    const data: ConcertFormResponse = {
-      action: this.action,
-      concert: { ...this.data, ...this.form.value },
-    };
-    this.ref.close(data);
+    });
   }
 
   /**
@@ -111,12 +97,9 @@ export class ConcertFormComponent implements OnInit {
    * @returns void
    */
   delete(): void {
-    this.loading = true;
-    this.service.delete(this.data.id);
-    setTimeout(() => {
-      this.loading = false;
+    this.service.delete(this.data.id).subscribe(() => {
       this.close();
-    }, 1000);
+    });
   }
 
   /**
@@ -126,5 +109,13 @@ export class ConcertFormComponent implements OnInit {
   clickDelete(): void {
     this.action = "delete";
     this.finish();
+  }
+
+  /**
+   * close modal and emit data
+   * @returns void
+   */
+  close(): void {
+    this.ref.close();
   }
 }

@@ -36,7 +36,7 @@ import { EntityStoreModule } from "./modules/entity-store-module/entityStore.mod
     ReactiveFormsModule,
     HttpClientModule,
     EntityStoreModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     EntityDataModule.forRoot(entityConfig),
     StoreDevtoolsModule.instrument({
