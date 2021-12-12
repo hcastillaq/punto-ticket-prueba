@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 import { Concert } from "../../interfaces/concert.interface";
 import { ConcertRepository } from "../../repositories/concert/concert.repository";
 
@@ -9,35 +10,35 @@ export class ConcertService {
   constructor(private repository: ConcertRepository) {}
   /**
    * get all concerts
-   * @returns Promise
+   * @returns Observable
    */
-  getAll(): Promise<Concert[]> {
+  getAll(): Observable<Concert[]> {
     return this.repository.all();
   }
   /**
    * get concerts filtered by artist
    * @param  {string} artist
-   * @returns Promise
+   * @returns Observable
    */
-  getByArtist(artist: string): Promise<Concert[]> {
+  getByArtist(artist: string): Observable<Concert[]> {
     return this.repository.searchByArtist(artist);
   }
 
   /**
    * update concert
    * @param  {Concert} concert
-   * @returns void
+   * @returns Observable
    */
-  update(concert: Concert): void {
-    this.repository.update(concert);
+  update(concert: Concert): Observable<string> {
+    return this.repository.update(concert);
   }
 
   /**
    * delete concert
    * @param  {string} concert
-   * @returns void
+   * @returns Observable
    */
-  delete(id: string): void {
-    this.repository.delete(id);
+  delete(id: string): Observable<string> {
+    return this.repository.delete(id);
   }
 }

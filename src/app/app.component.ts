@@ -6,6 +6,7 @@ import {
 } from "./components/concert-form/concert-form.component";
 import { Concert } from "./core/interfaces/concert.interface";
 import { ConcertService } from "./core/services/concert/concert.service";
+import { ConcertCollectionService } from "./ngrx/collections/concert.collection";
 
 @Component({
   selector: "app-root",
@@ -17,7 +18,7 @@ export class AppComponent implements OnInit {
   concerts: Concert[] = [];
 
   constructor(
-    private concertService: ConcertService,
+    private concertService: ConcertCollectionService,
     private dialog: MatDialog
   ) {}
 
@@ -30,7 +31,7 @@ export class AppComponent implements OnInit {
    * @returns void
    */
   getConcerts(): void {
-    this.concertService.getAll().then((concerts) => {
+    this.concertService.getAll().subscribe((concerts) => {
       this.setConcerts(concerts);
     });
   }

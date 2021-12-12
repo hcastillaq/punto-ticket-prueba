@@ -11,6 +11,14 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { SearchConcertComponent } from "./components/search-concert/search-concert.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ConcertFormComponent } from "./components/concert-form/concert-form.component";
+import { StoreModule } from "@ngrx/store";
+import { EffectsModule } from "@ngrx/effects";
+import { EntityDataModule } from "@ngrx/data";
+import { entityConfig } from "./entity-metadata";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { environment } from "../environments/environment";
+import { HttpClientModule } from "@angular/common/http";
+import { EntityStoreModule } from "./modules/entity-store-module/entityStore.module";
 
 @NgModule({
   declarations: [
@@ -26,6 +34,15 @@ import { ConcertFormComponent } from "./components/concert-form/concert-form.com
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    EntityStoreModule,
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([]),
+    EntityDataModule.forRoot(entityConfig),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
   ],
   providers: [
     { provide: ConcertRepository, useClass: ConcertInMemoryRepository },
