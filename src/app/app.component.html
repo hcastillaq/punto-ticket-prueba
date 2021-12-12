@@ -1,8 +1,4 @@
 <div class="container">
-  <app-search-concert
-    (concerts)="setConcerts($event)"
-    (reset)="restartConcerts()"></app-search-concert>
-  <app-table-concerts
-    [concerts]="concerts"
-    (select)="openDialog($event)"></app-table-concerts>
+  <app-search-concert></app-search-concert>
+  <app-table-concerts (select)="openDialog($event)"></app-table-concerts>
 </div>

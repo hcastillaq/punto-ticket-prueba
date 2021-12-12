@@ -6,9 +6,8 @@ import {
   Output,
 } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { Subject, takeUntil } from "rxjs";
-import { Concert } from "src/app/core/interfaces/concert.interface";
-import { ConcertService } from "src/app/core/services/concert/concert.service";
+import { delay, Subject, takeUntil } from "rxjs";
+import { ConcertCollectionService } from "src/app/ngrx/collections/concert.collection";
 
 @Component({
   selector: "app-search-concert",
@@ -16,15 +15,12 @@ import { ConcertService } from "src/app/core/services/concert/concert.service";
   styleUrls: ["./search-concert.component.scss"],
 })
 export class SearchConcertComponent implements OnInit, OnDestroy {
-  loading = false;
+  loading = this.concertService.loading$;
   isSearch = false;
   control = new FormControl("");
   destroySubs = new Subject();
 
-  @Output("concerts") concerts: EventEmitter<Concert[]> = new EventEmitter();
-  @Output("reset") reset: EventEmitter<never> = new EventEmitter<never>();
-
-  constructor(private concertService: ConcertService) {}
+  constructor(private concertService: ConcertCollectionService) {}
 
   ngOnInit(): void {
     this.handleControlEmptyValue();
@@ -36,13 +32,12 @@ export class SearchConcertComponent implements OnInit, OnDestroy {
   search(): void {
     if (this.validateControlValue() && !this.isSearch) {
       this.isSearch = true;
-      this.loading = true;
-      this.concertService.getByArtist(this.control.value).then((concerts) => {
-        setTimeout(() => {
-          this.loading = false;
-          this.concerts.emit(concerts);
-        }, 1000);
-      });
+      this.concertService
+        .getWithQuery(this.control.value)
+        .subscribe((concerts) => {
+          this.concertService.clearCache();
+          this.concertService.addManyToCache(concerts);
+        });
     }
   }
   /**
@@ -55,7 +50,7 @@ export class SearchConcertComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.isSearch = false;
         if (!this.validateControlValue()) {
-          this.reset.emit();
+          this.concertService.getAll();
         }
       });
   }

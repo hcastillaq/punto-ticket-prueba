@@ -67,12 +67,12 @@
       type="button"
       mat-flat-button
       color="primary"
-      [disabled]="form.invalid || loading"
+      [disabled]="form.invalid || (loading | async)"
       (click)="finish()"
       *ngIf="action !== 'show'">
       <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
         <span> {{ action | uppercase }}</span>
-        <mat-spinner diameter="15" *ngIf="loading"></mat-spinner>
+        <mat-spinner diameter="15" *ngIf="loading | async"></mat-spinner>
       </div>
     </button>
   </div>

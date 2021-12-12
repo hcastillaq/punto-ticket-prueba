@@ -8,14 +8,14 @@
     <input matInput placeholder="Search by artist" [formControl]="control" />
     <mat-icon
       matSuffix
-      *ngIf="validateControlValue() && !loading"
+      *ngIf="validateControlValue() && !(loading | async)"
       (click)="clearControl()"
       class="pointer">
       clear
     </mat-icon>
     <mat-spinner
       matSuffix
-      *ngIf="loading"
+      *ngIf="loading | async"
       diameter="20"
       color="primary"></mat-spinner>
   </mat-form-field>

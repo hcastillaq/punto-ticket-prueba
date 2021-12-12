@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Observable, of } from "rxjs";
 import { Concert } from "../../interfaces/concert.interface";
 import { ConcertRepository } from "./concert.repository";
 
@@ -33,31 +34,29 @@ export class ConcertInMemoryRepository extends ConcertRepository {
     },
   ];
 
-  all(): Promise<Concert[]> {
-    return new Promise((resolve) => {
-      resolve(this.concerts);
-    });
+  all(): Observable<Concert[]> {
+    return of(this.concerts);
   }
 
-  searchByArtist(artist: string): Promise<Concert[]> {
-    return new Promise((resolve) => {
-      const foundConcerts = this.concerts.filter((concert) =>
-        concert.artist.toLowerCase().includes(artist.toLowerCase())
-      );
-      resolve(foundConcerts);
-    });
+  searchByArtist(artist: string): Observable<Concert[]> {
+    const foundConcerts = this.concerts.filter((concert) =>
+      concert.artist.toLowerCase().includes(artist.toLowerCase())
+    );
+    return of(foundConcerts);
   }
 
-  update(concert: Concert): void {
+  update(concert: Concert): Observable<string> {
     this.concerts = this.concerts.map((_concert) => {
       if (_concert.id === concert.id) {
         return concert;
       }
       return _concert;
     });
+    return of(concert.id);
   }
 
-  delete(id: string): void {
+  delete(id: string): Observable<string> {
     this.concerts = this.concerts.filter((concert) => concert.id !== id);
+    return of(id);
   }
 }
