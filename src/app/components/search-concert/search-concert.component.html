@@ -1,5 +1,5 @@
 <form
-  class="mt mb"
+  class="mt"
   fxLayout="row"
   fxLayoutAlign="end center"
   fxLayoutGap="20px"
@@ -8,7 +8,7 @@
     <input matInput placeholder="Search by artist" [formControl]="control" />
     <mat-icon
       matSuffix
-      *ngIf="isSearch && !loading"
+      *ngIf="validateControlValue() && !loading"
       (click)="clearControl()"
       class="pointer">
       clear

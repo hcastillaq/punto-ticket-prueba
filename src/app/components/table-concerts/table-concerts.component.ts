@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { MatTableDataSource } from "@angular/material/table";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { Concert } from "src/app/core/interfaces/concert.interface";
 
 @Component({
@@ -10,10 +9,9 @@ import { Concert } from "src/app/core/interfaces/concert.interface";
 })
 export class TableConcertsComponent implements OnInit {
   @Input() concerts: Concert[] = [];
-  dataSource: MatTableDataSource<Concert> = new MatTableDataSource(
-    this.concerts
-  );
-  displayedColumns = ["title", "artist", "date", "hour"];
+  @Output() select: EventEmitter<Concert> = new EventEmitter<Concert>();
+
+  displayedColumns = ["title", "artist", "date"];
   constructor() {}
 
   ngOnInit(): void {
@@ -21,4 +19,8 @@ export class TableConcertsComponent implements OnInit {
   }
 
   private validateInputConcerts() {}
+
+  public selected(concert: Concert) {
+    this.select.emit(concert);
+  }
 }

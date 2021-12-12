@@ -2,5 +2,7 @@
   <app-search-concert
     (concerts)="setConcerts($event)"
     (reset)="restartConcerts()"></app-search-concert>
-  <app-table-concerts [concerts]="concerts"></app-table-concerts>
+  <app-table-concerts
+    [concerts]="concerts"
+    (select)="openDialog($event)"></app-table-concerts>
 </div>

@@ -8,28 +8,28 @@ import { ConcertRepository } from "./concert.repository";
 export class ConcertInMemoryRepository extends ConcertRepository {
   private concerts: Concert[] = [
     {
+      id: "1",
       title: "concert 1",
       artist: "Artist 1",
-      date: "2021/12/20",
+      date: "2021-12-20T00:00",
       city: "Bogota",
       description: "Artist 1 concert",
-      hour: "7:00 PM",
     },
     {
+      id: "2",
       title: "concert 2",
       artist: "Artist 2",
-      date: "2021/12/20",
+      date: "2021-12-20T00:00",
       city: "Medellin",
       description: "Artist 2 concert",
-      hour: "7:00 PM",
     },
     {
+      id: "3",
       title: "concert 3",
       artist: "Artist 3",
-      date: "2021/12/20",
+      date: "2021-12-20T00:00",
       city: "Bucaramanga",
       description: "artist3 concert",
-      hour: "7:00 PM",
     },
   ];
 
@@ -46,5 +46,18 @@ export class ConcertInMemoryRepository extends ConcertRepository {
       );
       resolve(foundConcerts);
     });
+  }
+
+  update(concert: Concert): void {
+    this.concerts = this.concerts.map((_concert) => {
+      if (_concert.id === concert.id) {
+        return concert;
+      }
+      return _concert;
+    });
+  }
+
+  delete(id: string): void {
+    this.concerts = this.concerts.filter((concert) => concert.id !== id);
   }
 }

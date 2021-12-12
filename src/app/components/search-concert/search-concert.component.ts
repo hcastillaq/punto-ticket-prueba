@@ -38,8 +38,10 @@ export class SearchConcertComponent implements OnInit, OnDestroy {
       this.isSearch = true;
       this.loading = true;
       this.concertService.getByArtist(this.control.value).then((concerts) => {
-        this.loading = false;
-        this.concerts.emit(concerts);
+        setTimeout(() => {
+          this.loading = false;
+          this.concerts.emit(concerts);
+        }, 1000);
       });
     }
   }
