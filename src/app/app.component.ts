@@ -74,15 +74,17 @@ export class AppComponent implements OnInit {
    * @returns void
    */
   updateTable(data: ConcertFormResponse): void {
-    switch (data.action) {
-      case "edit":
-        this.updateConcert(data.concert);
-        break;
-      case "delete":
-        this.deleteConcert(data.concert);
-        break;
-      default:
-        break;
+    if (data && data.action) {
+      switch (data.action) {
+        case "edit":
+          this.updateConcert(data.concert);
+          break;
+        case "delete":
+          this.deleteConcert(data.concert);
+          break;
+        default:
+          break;
+      }
     }
   }
   /**
