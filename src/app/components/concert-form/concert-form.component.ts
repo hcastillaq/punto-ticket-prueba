@@ -38,12 +38,13 @@ export class ConcertFormComponent implements OnInit {
    * @returns FormGroup
    */
   buildForm(): FormGroup {
+    console.log(new Date(parseInt(String(this.data.fecha)) * 1000));
     return this.formBuilder.group({
-      title: [this.data.title, [Validators.required]],
-      description: [this.data.description, [Validators.required]],
-      artist: [this.data.artist, [Validators.required]],
-      date: [this.data.date, [Validators.required]],
-      city: [this.data.city, [Validators.required]],
+      nombre: [this.data.nombre, [Validators.required]],
+      artistas: [this.data.artistas.toString(), [Validators.required]],
+      fecha: ["2021-12-08T15:00", [Validators.required]],
+      comuna: [this.data.comuna, [Validators.required]],
+      agotado: [this.data.agotado, [Validators.required]],
     });
   }
 

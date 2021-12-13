@@ -1,8 +1,14 @@
 export interface Concert {
   id: string;
-  title: string;
-  description: string;
-  artist: string;
-  date: string;
-  city: string;
+  nombre: string;
+  imagen: string;
+  fecha: number;
+  recinto: string;
+  comuna: string;
+  precio: {
+    moneda: string;
+    monto: number;
+  };
+  artistas: string[];
+  agotado: boolean;
 }

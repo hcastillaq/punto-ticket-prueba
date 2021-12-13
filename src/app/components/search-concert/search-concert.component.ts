@@ -30,13 +30,13 @@ export class SearchConcertComponent implements OnInit, OnDestroy {
    * @returns void
    */
   search(): void {
+    this.concertService.clearCache();
     if (this.validateControlValue() && !this.isSearch) {
       this.isSearch = true;
       this.concertService
         .getWithQuery(this.control.value)
         .subscribe((concerts) => {
-          this.concertService.clearCache();
-          this.concertService.addManyToCache(concerts);
+          this.concertService.addAllToCache(concerts);
         });
     }
   }
@@ -50,6 +50,7 @@ export class SearchConcertComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.isSearch = false;
         if (!this.validateControlValue()) {
+          this.concertService.clearCache();
           this.concertService.getAll();
         }
       });

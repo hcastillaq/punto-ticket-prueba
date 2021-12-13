@@ -1,4 +1,12 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from "@angular/core";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatTableDataSource } from "@angular/material/table";
 import { Concert } from "src/app/core/interfaces/concert.interface";
 import { ConcertCollectionService } from "src/app/ngrx/collections/concert.collection";
 
@@ -9,17 +17,24 @@ import { ConcertCollectionService } from "src/app/ngrx/collections/concert.colle
   inputs: ["concerts"],
 })
 export class TableConcertsComponent implements OnInit {
-  concerts: Concert[] = [];
+  loading = this.concertsCollection.loading$;
+  dataSource: MatTableDataSource<Concert> = new MatTableDataSource();
   @Output() select: EventEmitter<Concert> = new EventEmitter<Concert>();
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
 
-  displayedColumns = ["title", "artist", "date"];
+  displayedColumns = ["nombre", "comuna", "recinto", "fecha", "agotado"];
   constructor(private concertsCollection: ConcertCollectionService) {}
 
   ngOnInit(): void {
-    this.concertsCollection.entities$.subscribe(
-      (concerts) => (this.concerts = concerts)
-    );
+    this.concertsCollection.entities$.subscribe((concerts) => {
+      this.dataSource.data = concerts;
+    });
     this.validateInputConcerts();
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
   private validateInputConcerts() {}

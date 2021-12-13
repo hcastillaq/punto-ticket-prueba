@@ -9,28 +9,144 @@ import { ConcertRepository } from "./concert.repository";
 export class ConcertInMemoryRepository extends ConcertRepository {
   private concerts: Concert[] = [
     {
-      id: "1",
-      title: "concert 1",
-      artist: "Artist 1",
-      date: "2021-12-20T00:00",
-      city: "Bogota",
-      description: "Artist 1 concert",
+      id: "6",
+      nombre: "Louis Tomlinson - World Tour",
+      imagen: "https://static.puntoticket.com/images/eventos/dgm094v6_md.jpg",
+      fecha: 1644350400,
+      recinto: "Movistar Arena",
+      comuna: "Santiago",
+      precio: {
+        monto: 73000,
+        moneda: "CLP",
+      },
+      artistas: ["Louis Tomlinson"],
+      agotado: true,
     },
     {
-      id: "2",
-      title: "concert 2",
-      artist: "Artist 2",
-      date: "2021-12-20T00:00",
-      city: "Medellin",
-      description: "Artist 2 concert",
+      id: "16",
+      nombre: "Louis Tomlinson - World Tour",
+      imagen: "https://static.puntoticket.com/images/eventos/dgm094v6_md.jpg",
+      fecha: 1644350400,
+      recinto: "Movistar Arena",
+      comuna: "Santiago",
+      precio: {
+        monto: 73000,
+        moneda: "CLP",
+      },
+      artistas: ["Louis Tomlinson"],
+      agotado: true,
     },
     {
-      id: "3",
-      title: "concert 3",
-      artist: "Artist 3",
-      date: "2021-12-20T00:00",
-      city: "Bucaramanga",
-      description: "artist3 concert",
+      id: "26",
+      nombre: "Louis Tomlinson - World Tour",
+      imagen: "https://static.puntoticket.com/images/eventos/dgm094v6_md.jpg",
+      fecha: 1644350400,
+      recinto: "Movistar Arena",
+      comuna: "Santiago",
+      precio: {
+        monto: 73000,
+        moneda: "CLP",
+      },
+      artistas: ["Louis Tomlinson"],
+      agotado: true,
+    },
+    {
+      id: "36",
+      nombre: "Louis Tomlinson - World Tour",
+      imagen: "https://static.puntoticket.com/images/eventos/dgm094v6_md.jpg",
+      fecha: 1644350400,
+      recinto: "Movistar Arena",
+      comuna: "Santiago",
+      precio: {
+        monto: 73000,
+        moneda: "CLP",
+      },
+      artistas: ["Louis Tomlinson"],
+      agotado: true,
+    },
+    {
+      id: "46",
+      nombre: "Louis Tomlinson - World Tour",
+      imagen: "https://static.puntoticket.com/images/eventos/dgm094v6_md.jpg",
+      fecha: 1644350400,
+      recinto: "Movistar Arena",
+      comuna: "Santiago",
+      precio: {
+        monto: 73000,
+        moneda: "CLP",
+      },
+      artistas: ["Louis Tomlinson"],
+      agotado: true,
+    },
+    {
+      id: "56",
+      nombre: "Louis Tomlinson - World Tour",
+      imagen: "https://static.puntoticket.com/images/eventos/dgm094v6_md.jpg",
+      fecha: 1644350400,
+      recinto: "Movistar Arena",
+      comuna: "Santiago",
+      precio: {
+        monto: 73000,
+        moneda: "CLP",
+      },
+      artistas: ["Louis Tomlinson"],
+      agotado: true,
+    },
+    {
+      id: "66",
+      nombre: "Louis Tomlinson - World Tour",
+      imagen: "https://static.puntoticket.com/images/eventos/dgm094v6_md.jpg",
+      fecha: 1644350400,
+      recinto: "Movistar Arena",
+      comuna: "Santiago",
+      precio: {
+        monto: 73000,
+        moneda: "CLP",
+      },
+      artistas: ["Louis Tomlinson"],
+      agotado: true,
+    },
+    {
+      id: "76",
+      nombre: "Louis Tomlinson - World Tour",
+      imagen: "https://static.puntoticket.com/images/eventos/dgm094v6_md.jpg",
+      fecha: 1644350400,
+      recinto: "Movistar Arena",
+      comuna: "Santiago",
+      precio: {
+        monto: 73000,
+        moneda: "CLP",
+      },
+      artistas: ["Louis Tomlinson"],
+      agotado: true,
+    },
+    {
+      id: "86",
+      nombre: "Louis Tomlinson - World Tour",
+      imagen: "https://static.puntoticket.com/images/eventos/dgm094v6_md.jpg",
+      fecha: 1644350400,
+      recinto: "Movistar Arena",
+      comuna: "Santiago",
+      precio: {
+        monto: 73000,
+        moneda: "CLP",
+      },
+      artistas: ["Louis Tomlinson"],
+      agotado: true,
+    },
+    {
+      id: "96",
+      nombre: "Louis Tomlinson - World Tour",
+      imagen: "https://static.puntoticket.com/images/eventos/dgm094v6_md.jpg",
+      fecha: 1644350400,
+      recinto: "Movistar Arena",
+      comuna: "Santiago",
+      precio: {
+        monto: 73000,
+        moneda: "CLP",
+      },
+      artistas: ["Louis Tomlinson"],
+      agotado: true,
     },
   ];
 
@@ -40,19 +156,19 @@ export class ConcertInMemoryRepository extends ConcertRepository {
 
   searchByArtist(artist: string): Observable<Concert[]> {
     const foundConcerts = this.concerts.filter((concert) =>
-      concert.artist.toLowerCase().includes(artist.toLowerCase())
+      concert.artistas.toString().toLowerCase().includes(artist.toLowerCase())
     );
     return of(foundConcerts);
   }
 
-  update(concert: Concert): Observable<string> {
+  update(concert: Concert): Observable<Concert> {
     this.concerts = this.concerts.map((_concert) => {
       if (_concert.id === concert.id) {
         return concert;
       }
       return _concert;
     });
-    return of(concert.id);
+    return of(concert);
   }
 
   delete(id: string): Observable<string> {

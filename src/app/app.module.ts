@@ -19,6 +19,7 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { environment } from "../environments/environment";
 import { HttpClientModule } from "@angular/common/http";
 import { EntityStoreModule } from "./modules/entity-store-module/entityStore.module";
+import { ConcertHttpRepository } from "./core/repositories/concert/concertHttp.repository";
 
 @NgModule({
   declarations: [
@@ -44,9 +45,7 @@ import { EntityStoreModule } from "./modules/entity-store-module/entityStore.mod
       logOnly: environment.production,
     }),
   ],
-  providers: [
-    { provide: ConcertRepository, useClass: ConcertInMemoryRepository },
-  ],
+  providers: [{ provide: ConcertRepository, useClass: ConcertHttpRepository }],
   bootstrap: [AppComponent],
   entryComponents: [ConcertFormComponent],
 })
