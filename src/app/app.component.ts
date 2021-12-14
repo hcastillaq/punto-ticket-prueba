@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   }
 
   /**
-   * get concerts from service
+   * get concerts
    * @returns void
    */
   getConcerts(): void {
@@ -31,15 +31,7 @@ export class AppComponent implements OnInit {
   }
 
   /**
-   * set concerts from service in concerts
-   * @returns void
-   */
-  restartConcerts(): void {
-    this.getConcerts();
-  }
-
-  /**
-   * open model with form
+   * Open dialog with form
    * @param  {Concert} concert
    * @returns void
    */

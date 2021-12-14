@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { DefaultDataService, HttpUrlGenerator, QueryParams } from "@ngrx/data";
+import { DefaultDataService, HttpUrlGenerator } from "@ngrx/data";
 import { Update } from "@ngrx/entity";
 import { map, Observable } from "rxjs";
 import { Concert } from "src/app/core/interfaces/concert.interface";
