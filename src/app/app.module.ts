@@ -12,7 +12,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ConcertFormComponent } from "./components/concert-form/concert-form.component";
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
-import { DefaultDataServiceConfig, EntityDataModule } from "@ngrx/data";
+import { EntityDataModule } from "@ngrx/data";
 import { entityConfig } from "./entity-metadata";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { environment } from "../environments/environment";

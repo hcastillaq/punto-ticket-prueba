@@ -8,7 +8,7 @@ export class UnixToStringPipe implements PipeTransform {
   constructor(private dateService: DateService) {}
 
   transform(value: number, ...args: unknown[]): string {
-    const [fecha, hora] = this.dateService.unixToString(value).split("T");
-    return `${fecha} / ${hora}`;
+    const [date, time] = this.dateService.unixToString(value).split("T");
+    return `${date} / ${time}`;
   }
 }

@@ -12,7 +12,7 @@ export class ConcertInMemoryRepository extends ConcertRepository {
       id: "6",
       nombre: "Louis Tomlinson - World Tour",
       imagen: "https://static.puntoticket.com/images/eventos/dgm094v6_md.jpg",
-      fecha: 1644350400,
+      fecha: "1644350400",
       recinto: "Movistar Arena",
       comuna: "Santiago",
       precio: {
@@ -26,7 +26,7 @@ export class ConcertInMemoryRepository extends ConcertRepository {
       id: "16",
       nombre: "Louis Tomlinson - World Tour",
       imagen: "https://static.puntoticket.com/images/eventos/dgm094v6_md.jpg",
-      fecha: 1644350400,
+      fecha: "1644350400",
       recinto: "Movistar Arena",
       comuna: "Santiago",
       precio: {
@@ -40,7 +40,7 @@ export class ConcertInMemoryRepository extends ConcertRepository {
       id: "26",
       nombre: "Louis Tomlinson - World Tour",
       imagen: "https://static.puntoticket.com/images/eventos/dgm094v6_md.jpg",
-      fecha: 1644350400,
+      fecha: "1644350400",
       recinto: "Movistar Arena",
       comuna: "Santiago",
       precio: {
@@ -54,7 +54,7 @@ export class ConcertInMemoryRepository extends ConcertRepository {
       id: "36",
       nombre: "Louis Tomlinson - World Tour",
       imagen: "https://static.puntoticket.com/images/eventos/dgm094v6_md.jpg",
-      fecha: 1644350400,
+      fecha: "1644350400",
       recinto: "Movistar Arena",
       comuna: "Santiago",
       precio: {
@@ -68,7 +68,7 @@ export class ConcertInMemoryRepository extends ConcertRepository {
       id: "46",
       nombre: "Louis Tomlinson - World Tour",
       imagen: "https://static.puntoticket.com/images/eventos/dgm094v6_md.jpg",
-      fecha: 1644350400,
+      fecha: "1644350400",
       recinto: "Movistar Arena",
       comuna: "Santiago",
       precio: {
@@ -82,7 +82,7 @@ export class ConcertInMemoryRepository extends ConcertRepository {
       id: "56",
       nombre: "Louis Tomlinson - World Tour",
       imagen: "https://static.puntoticket.com/images/eventos/dgm094v6_md.jpg",
-      fecha: 1644350400,
+      fecha: "1644350400",
       recinto: "Movistar Arena",
       comuna: "Santiago",
       precio: {
@@ -96,7 +96,7 @@ export class ConcertInMemoryRepository extends ConcertRepository {
       id: "66",
       nombre: "Louis Tomlinson - World Tour",
       imagen: "https://static.puntoticket.com/images/eventos/dgm094v6_md.jpg",
-      fecha: 1644350400,
+      fecha: "1644350400",
       recinto: "Movistar Arena",
       comuna: "Santiago",
       precio: {
@@ -110,7 +110,7 @@ export class ConcertInMemoryRepository extends ConcertRepository {
       id: "76",
       nombre: "Louis Tomlinson - World Tour",
       imagen: "https://static.puntoticket.com/images/eventos/dgm094v6_md.jpg",
-      fecha: 1644350400,
+      fecha: "1644350400",
       recinto: "Movistar Arena",
       comuna: "Santiago",
       precio: {
@@ -124,7 +124,7 @@ export class ConcertInMemoryRepository extends ConcertRepository {
       id: "86",
       nombre: "Louis Tomlinson - World Tour",
       imagen: "https://static.puntoticket.com/images/eventos/dgm094v6_md.jpg",
-      fecha: 1644350400,
+      fecha: "1644350400",
       recinto: "Movistar Arena",
       comuna: "Santiago",
       precio: {
@@ -138,7 +138,7 @@ export class ConcertInMemoryRepository extends ConcertRepository {
       id: "96",
       nombre: "Louis Tomlinson - World Tour",
       imagen: "https://static.puntoticket.com/images/eventos/dgm094v6_md.jpg",
-      fecha: 1644350400,
+      fecha: "1644350400",
       recinto: "Movistar Arena",
       comuna: "Santiago",
       precio: {
