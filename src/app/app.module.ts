@@ -20,6 +20,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { EntityStoreModule } from "./modules/entity-store-module/entityStore.module";
 import { ConcertHttpRepository } from "./core/repositories/concert/concertHttp.repository";
 import { UnixToStringPipe } from "./core/pipes/unix-to-string.pipe";
+import { ConfirmationComponent } from "./components/confirmation/confirmation.component";
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { UnixToStringPipe } from "./core/pipes/unix-to-string.pipe";
     SearchConcertComponent,
     ConcertFormComponent,
     UnixToStringPipe,
+    ConfirmationComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +50,6 @@ import { UnixToStringPipe } from "./core/pipes/unix-to-string.pipe";
   ],
   providers: [{ provide: ConcertRepository, useClass: ConcertHttpRepository }],
   bootstrap: [AppComponent],
-  entryComponents: [ConcertFormComponent],
+  entryComponents: [ConcertFormComponent, ConfirmationComponent],
 })
 export class AppModule {}

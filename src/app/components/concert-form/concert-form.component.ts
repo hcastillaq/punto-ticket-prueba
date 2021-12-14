@@ -1,9 +1,14 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from "@angular/material/dialog";
 import { Concert } from "src/app/core/interfaces/concert.interface";
 import { ConcertCollectionService } from "src/app/ngrx/collections/concert.collection";
 import { DateService } from "src/app/core/services/date/date.service";
+import { ConfirmationComponent } from "../confirmation/confirmation.component";
 
 export type ConcertFormAction = "show" | "edit" | "create" | "delete";
 export type ConcertFormResponse = {
@@ -27,7 +32,8 @@ export class ConcertFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private ref: MatDialogRef<ConcertFormComponent>,
     private dateService: DateService,
-    @Inject(MAT_DIALOG_DATA) public data: Concert
+    @Inject(MAT_DIALOG_DATA) public data: Concert,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -156,9 +162,16 @@ export class ConcertFormComponent implements OnInit {
    * @returns void
    */
   delete(): void {
-    this.service.delete(this.data.id).subscribe(() => {
-      this.close();
-    });
+    this.dialog
+      .open(ConfirmationComponent)
+      .afterClosed()
+      .subscribe((resp) => {
+        if (resp) {
+          this.service.delete(this.data.id).subscribe(() => {
+            this.close();
+          });
+        }
+      });
   }
 
   /**
