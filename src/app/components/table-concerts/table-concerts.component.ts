@@ -9,6 +9,7 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
 import { Concert } from "src/app/core/interfaces/concert.interface";
 import { ConcertCollectionService } from "src/app/ngrx/collections/concert.collection";
+import { DateService } from "src/app/core/services/date/date.service";
 
 @Component({
   selector: "app-table-concerts",
@@ -24,7 +25,10 @@ export class TableConcertsComponent implements OnInit {
   paginator!: MatPaginator;
 
   displayedColumns = ["nombre", "comuna", "recinto", "fecha", "agotado"];
-  constructor(private concertsCollection: ConcertCollectionService) {}
+  constructor(
+    private concertsCollection: ConcertCollectionService,
+    public dataService: DateService
+  ) {}
 
   ngOnInit(): void {
     this.concertsCollection.entities$.subscribe((concerts) => {

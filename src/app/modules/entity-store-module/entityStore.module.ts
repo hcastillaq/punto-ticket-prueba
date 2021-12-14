@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { EntityDataService } from "@ngrx/data";
+import { DefaultDataServiceConfig, EntityDataService } from "@ngrx/data";
 import { ConcertDataService } from "src/app/ngrx/dataServices/concert.dataService";
 
 @NgModule({

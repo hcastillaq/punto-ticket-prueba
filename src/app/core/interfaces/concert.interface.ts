@@ -2,7 +2,7 @@ export interface Concert {
   id: string;
   nombre: string;
   imagen: string;
-  fecha: number;
+  fecha: string;
   recinto: string;
   comuna: string;
   precio: {

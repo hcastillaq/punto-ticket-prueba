@@ -4,18 +4,47 @@
     fxLayoutAlign="space-between center"
     class="mt mb"
     fxLayoutGap="20px">
-    <button mat-icon-button focus="none" (click)="clickDelete()">
-      <mat-icon>delete</mat-icon>
-    </button>
     <div fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="center">
-      <span>Activate edition</span>
       <mat-checkbox
         color="primary"
         *ngIf="action !== 'create'"
         (change)="toggleActionEdit($event.checked)">
+        Activate edition
       </mat-checkbox>
     </div>
+
+    <button mat-icon-button color="warn" focus="none" (click)="clickDelete()">
+      <mat-icon>delete</mat-icon>
+    </button>
   </div>
+
+  <div fxLayout="row" fxLayoutAlign="center center " class="mb mt">
+    <img [src]="data.imagen" [alt]="data.nombre" width="200px" height="200px" />
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px">
+    <mat-checkbox
+      [disabled]="readonly"
+      color="primary"
+      formControlName="agotado">
+      Agotado
+    </mat-checkbox>
+  </div>
+
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Imagen"
+      [readonly]="readonly"
+      formControlName="imagen" />
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Nombre"
+      [readonly]="readonly"
+      formControlName="nombre" />
+  </mat-form-field>
 
   <mat-form-field>
     <input
@@ -26,10 +55,82 @@
       formControlName="fecha" />
   </mat-form-field>
 
-  <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
-    <button type="button" mat-flat-button (click)="close()" cdkFocusInitial>
-      Close
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Recinto"
+      [readonly]="readonly"
+      formControlName="recinto" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Comuna"
+      [readonly]="readonly"
+      formControlName="comuna" />
+  </mat-form-field>
+
+  <div formGroupName="precio" fxLayout="row" fxLayoutGap="20px">
+    <mat-form-field fxFlex="100%">
+      <input
+        matInput
+        placeholder="Moneda"
+        [readonly]="readonly"
+        formControlName="moneda" />
+    </mat-form-field>
+    <mat-form-field fxFlex="100%">
+      <input
+        matInput
+        type="number"
+        placeholder="Monto"
+        [readonly]="readonly"
+        formControlName="monto" />
+    </mat-form-field>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h2>Artistas</h2>
+
+    <button
+      mat-mini-fab
+      color="primary"
+      (click)="addArtist()"
+      [disabled]="readonly">
+      <mat-icon>add</mat-icon>
     </button>
+  </div>
+  <div
+    formArrayName="artistas"
+    *ngFor="let item of getFormArrayArtists.controls; let i = index">
+    <div
+      [formGroupName]="i"
+      fxLayout="flex"
+      fxLayoutAlign="space-between center">
+      <mat-form-field fxFlex="80%">
+        <input
+          matInput
+          placeholder="Artista"
+          [readonly]="readonly"
+          formControlName="artista" />
+      </mat-form-field>
+      <button
+        mat-mini-fab
+        color="warn"
+        [disabled]="readonly"
+        (click)="removeArtist(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+    fxLayoutGap="20px"
+    class="mt mb">
+    <button type="button" mat-flat-button (click)="close()">Close</button>
+
     <button
       type="button"
       mat-flat-button

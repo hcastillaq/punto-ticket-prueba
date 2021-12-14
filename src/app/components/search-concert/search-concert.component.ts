@@ -1,12 +1,6 @@
-import {
-  Component,
-  EventEmitter,
-  OnDestroy,
-  OnInit,
-  Output,
-} from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { delay, Subject, takeUntil } from "rxjs";
+import { Subject, takeUntil } from "rxjs";
 import { ConcertCollectionService } from "src/app/ngrx/collections/concert.collection";
 
 @Component({
@@ -22,45 +16,33 @@ export class SearchConcertComponent implements OnInit, OnDestroy {
 
   constructor(private concertService: ConcertCollectionService) {}
 
-  ngOnInit(): void {
-    this.handleControlEmptyValue();
-  }
+  ngOnInit(): void {}
   /**
    * call when user click in search button, get concerts from service
    * @returns void
    */
   search(): void {
-    this.concertService.clearCache();
     if (this.validateControlValue() && !this.isSearch) {
       this.isSearch = true;
       this.concertService
         .getWithQuery(this.control.value)
+        .pipe(takeUntil(this.destroySubs))
         .subscribe((concerts) => {
+          this.concertService.clearCache();
           this.concertService.addAllToCache(concerts);
         });
     }
   }
-  /**
-   * emit reset and clear search state
-   * @returns void
-   */
-  handleControlEmptyValue(): void {
-    this.control.valueChanges
-      .pipe(takeUntil(this.destroySubs))
-      .subscribe(() => {
-        this.isSearch = false;
-        if (!this.validateControlValue()) {
-          this.concertService.clearCache();
-          this.concertService.getAll();
-        }
-      });
-  }
+
   /**
    * reset search control
    * @returns void
    */
   clearControl(): void {
+    this.isSearch = false;
     this.control.setValue("");
+    this.concertService.clearCache();
+    this.concertService.getAll();
   }
 
   /**
@@ -68,7 +50,7 @@ export class SearchConcertComponent implements OnInit, OnDestroy {
    * @returns boolean
    */
   validateControlValue(): boolean {
-    return this.control.value.trim() !== "";
+    return this.control.value.trim().length;
   }
 
   /**
