@@ -16,11 +16,12 @@ import { EntityDataModule } from "@ngrx/data";
 import { entityConfig } from "./entity-metadata";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { environment } from "../environments/environment";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { EntityStoreModule } from "./modules/entity-store-module/entityStore.module";
 import { ConcertHttpRepository } from "./core/repositories/concert/concertHttp.repository";
 import { UnixToStringPipe } from "./core/pipes/unix-to-string.pipe";
 import { ConfirmationComponent } from "./components/confirmation/confirmation.component";
+import { HttpErrorInterceptor } from "./core/interceptors/errors.interceptor";
 
 @NgModule({
   declarations: [
@@ -48,7 +49,10 @@ import { ConfirmationComponent } from "./components/confirmation/confirmation.co
       logOnly: environment.production,
     }),
   ],
-  providers: [{ provide: ConcertRepository, useClass: ConcertHttpRepository }],
+  providers: [
+    { provide: ConcertRepository, useClass: ConcertHttpRepository },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
   entryComponents: [ConcertFormComponent, ConfirmationComponent],
 })
