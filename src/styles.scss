@@ -1,10 +1,14 @@
 @use "./scss/theme/colors.scss" as colors;
 @use "./scss/theme/typography.scss" as typography;
-@use "./scss//theme//utils.scss";
+@use "./scss/theme/utils.scss";
+@use "./scss/theme/colors_class.scss";
 @use "./scss/theme/layout.scss";
 
 :root {
   --background: #{colors.$background};
+  --success: #{colors.$success};
+  --error: #{colors.$error};
+  --text-secondary: #{colors.$text-secondary};
   --font-size: #{typography.$font-size};
 }
 

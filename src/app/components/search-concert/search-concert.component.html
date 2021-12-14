@@ -5,21 +5,20 @@
   fxLayoutGap="20px"
   (ngSubmit)="search()">
   <mat-form-field appearance="legacy" fxFlex="40%" fxFlex.lt-sm="100%">
-    <input matInput placeholder="Search by artist" [formControl]="control" />
+    <input
+      matInput
+      placeholder="Search by artist"
+      [formControl]="control"
+      [readonly]="isSearch" />
     <mat-icon
       matSuffix
-      *ngIf="validateControlValue() && !(loading | async)"
+      *ngIf="isSearch"
       (click)="clearControl()"
       class="pointer">
       clear
     </mat-icon>
-    <mat-spinner
-      matSuffix
-      *ngIf="loading | async"
-      diameter="20"
-      color="primary"></mat-spinner>
   </mat-form-field>
-  <button type="submit" mat-flat-button color="primary">
+  <button type="submit" mat-flat-button color="primary" [disabled]="isSearch">
     <mat-icon>search</mat-icon>
   </button>
 </form>

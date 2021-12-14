@@ -1,12 +1,28 @@
-<mat-card>
+<mat-card class="mt mb">
   <mat-card-content fxLayout="column" fxLayoutGap="20px">
-    <table mat-table [dataSource]="concerts" fxFlex="100%" class="mt mb">
+    <table mat-table [dataSource]="dataSource" fxFlex="100%">
       <ng-container
         *ngFor="let column of displayedColumns"
         [matColumnDef]="column">
         <th mat-header-cell *matHeaderCellDef>{{ column | uppercase }}</th>
         <td mat-cell *matCellDef="let element" (click)="selected(element)">
-          {{ element[column] }}
+          <ng-container [ngSwitch]="column">
+            <p *ngSwitchCase="'agotado'">
+              <mat-chip-list>
+                <mat-chip
+                  [color]="element[column] ? 'warn' : 'primary'"
+                  selected>
+                  {{ element[column] ? "AGOTADO" : "DISPONIBLE" }}
+                </mat-chip>
+              </mat-chip-list>
+            </p>
+            <p *ngSwitchCase="'fecha'">
+              {{ element[column] | unixToString }}
+            </p>
+            <p *ngSwitchDefault>
+              {{ element[column] }}
+            </p>
+          </ng-container>
         </td>
       </ng-container>
 
@@ -17,8 +33,20 @@
         class="pointer"></tr>
     </table>
 
-    <div *ngIf="!concerts.length" fxLayout="row" fxLayoutAlign="center center">
-      <span class="mat-caption">Sorry, not found results.</span>
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <ng-container
+        *ngIf="
+          !dataSource.data.length && !(loading | async);
+          else elseTemplate
+        ">
+        <span class="mat-caption"> Sorry, not found results. </span>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <mat-spinner *ngIf="loading | async" diameter="20"></mat-spinner>
+      </ng-template>
     </div>
+
+    <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons>
+    </mat-paginator>
   </mat-card-content>
 </mat-card>

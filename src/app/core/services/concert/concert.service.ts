@@ -13,7 +13,7 @@ export class ConcertService {
    * @returns Observable
    */
   getAll(): Observable<Concert[]> {
-    return this.repository.all().pipe(delay(1000));
+    return this.repository.all();
   }
   /**
    * get concerts filtered by artist
@@ -21,7 +21,7 @@ export class ConcertService {
    * @returns Observable
    */
   getByArtist(artist: string): Observable<Concert[]> {
-    return this.repository.searchByArtist(artist).pipe(delay(1000));
+    return this.repository.searchByArtist(artist);
   }
 
   /**
@@ -29,8 +29,8 @@ export class ConcertService {
    * @param  {Concert} concert
    * @returns Observable
    */
-  update(concert: Concert): Observable<string> {
-    return this.repository.update(concert).pipe(delay(1000));
+  update(concert: Concert): Observable<Concert> {
+    return this.repository.update(concert);
   }
 
   /**
@@ -39,6 +39,6 @@ export class ConcertService {
    * @returns Observable
    */
   delete(id: string): Observable<string> {
-    return this.repository.delete(id).pipe(delay(1000));
+    return this.repository.delete(id);
   }
 }
